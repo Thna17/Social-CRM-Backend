@@ -9,6 +9,7 @@ const router = express.Router();
 
 router.get("/facebook/", (req, res, next) => {
   const userId = req.query.user_id;
+  
 
   passport.authenticate("facebook", {
     scope: ["pages_messaging", "pages_show_list"],

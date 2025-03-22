@@ -18,4 +18,4 @@ sequelize.sync({ force: false }).then(() => {
   console.log('Database synced');
 });
 
-module.exports = { User, ChannelPage, Channel, PageMessage, PageMessageDetail };
+module.exports = { User, ChannelPage, Channel };
