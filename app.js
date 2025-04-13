@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 require('./controllers/facebook.controller'); // Ensure Passport config loads
-const authRoutes = require('./routes/auth.routes');
 const socialChannelRoute = require('./routes/socialChannel.routes');
 const messageRoutes = require('./routes/message.routes');
+const templateRoutes = require('./routes/template.routes')
+const webhookRoutes = require('./routes/webhook.routes')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const syncDB = require('./config/initDb');
@@ -32,7 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // If using sessions
 
 // Routes
-app.use('/api/auth', authRoutes);
+app.use('/api/template', templateRoutes);
+app.use('/api/webhook', webhookRoutes)
 app.use('/api/channel', socialChannelRoute);
 app.use('/api/messages', messageRoutes);
 

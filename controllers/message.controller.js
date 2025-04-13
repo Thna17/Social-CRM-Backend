@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { ChannelPage, PageMessage, PageMessageDetail } = require('../models');
+const { FacebookPage } = require('../models');
 const CryptoJS = require('crypto-js');
 const redis = require('../config/redis');
 
@@ -13,7 +13,7 @@ exports.getMessages = async (req, res) => {
       return res.json(JSON.parse(cachedMessages));
     }
     
-    const page = await ChannelPage.findOne({ 
+    const page = await FacebookPage.findOne({ 
       where: { page_id: pageId },
       attributes: ['page_access_token'],
       required: true 
@@ -76,7 +76,7 @@ exports.getMessages = async (req, res) => {
       }
   
       // Get page access token from database
-      const page = await ChannelPage.findOne({
+      const page = await FacebookPage.findOne({
         where: { page_id: pageId },
         attributes: ['page_access_token']
       });
