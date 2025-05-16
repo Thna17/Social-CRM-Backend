@@ -18,7 +18,7 @@ const Template = sequelize.define("Template", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-    // page_id: { type: DataTypes.STRING, allowNull: true, unique: true },
+  page_id: { type: DataTypes.STRING, allowNull: true, unique: true },
 });
 
 module.exports = Template;

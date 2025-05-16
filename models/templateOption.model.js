@@ -9,7 +9,12 @@ const TemplateOption = sequelize.define("TemplateOption", {
   },
   option_number: DataTypes.INTEGER,
   option_text: DataTypes.STRING,
-  reply_text: DataTypes.TEXT
+  reply_text: DataTypes.TEXT,
+  product_data: {  // New field
+    type: DataTypes.JSON,
+    allowNull: true
+  }
+
 });
 
 module.exports = TemplateOption;

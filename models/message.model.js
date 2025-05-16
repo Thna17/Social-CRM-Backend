@@ -1,15 +1,37 @@
+// message.model.js
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
+const FacebookPage = require("./facebookPage.model");
+const FacebookAccount = require("./facebookAccount.model");
 
-// const { DataTypes } = require('sequelize');
-// const sequelize = require('../config/database');
-// const User = require('./user.model');
+const Message = sequelize.define("Message", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  sender_id: DataTypes.STRING,
+  page_id: {
+    type: DataTypes.STRING,
+    references: {
+      model: FacebookPage,
+      key: "page_id",
+    },
+  },
+  facebook_id: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: FacebookAccount,
+      key: "id",
+    },
+  },
 
-// const Message = sequelize.define('Message', {
-//   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-//   user_id: { type: DataTypes.INTEGER, references: { model: User, key: 'id' } },
-//   page_id: { type: DataTypes.STRING },
-//   sender_id: { type: DataTypes.STRING },
-//   message: { type: DataTypes.TEXT },
-//   timestamp: { type: DataTypes.DATE }
-// });
+  content: DataTypes.TEXT,
+  direction: DataTypes.ENUM("incoming", "outgoing"),
+  timestamp: DataTypes.DATE,
+  message_type: DataTypes.ENUM("text", "quick_reply", "product_carousel"),
+  option_selected: DataTypes.INTEGER,
+});
 
-// module.exports = Message;
+module.exports = Message;
